@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Handwriting Recognition</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+    />
+  </head>
+  <body>
+    <!DOCTYPE html>
+    <html>
+      <body style="background-color: rgb(250, 243, 212)">
+        <div class="draw-sect">
+          <div class="grid-container" style="padding: 0px 0px">
+            <!-- Grid items will be generated dynamically using JavaScript -->
+          </div>
+          <div class="mid-line-1"></div>
+          <div class="mid-line-2"></div>
+          <div class="mid-line-3"></div>
+          <div class="side-bar">
+            <div class="tutorial">
+              <h4>Click and drag to draw</h4>
+              <h4>Shift + Click and drag to erase</h4>
+              <h4>Ctrl to erase all</h4>
+            </div>
+            <button class="guess-button">Guess</button>
+            <p style="margin-top: 1vh">guess handwriting digit</p>
+            <div class="big-number">8</div>
+            <div class="button-container">
+              <button class="login-button">Login</button>
+              <button class="register-button">Register</button>
+              <h2 class="regis">Registration</h2>
+              <form action="/users/signup" method="post" class="create_account">
+                <label for="uname">Username:</label>
+                <input
+                  type="text"
+                  id="uname"
+                  name="uname"
+                  required
+                /><br /><br />
+                <label for="psw">Password:</label>
+                <input
+                  type="password"
+                  id="psw"
+                  name="psw"
+                  required
+                /><br /><br />
+                <button type="submit">Register</button>
+                <button
+                  type="button"
+                  onclick="onBack()"
+                  class="back-login"
+                  formnovalidate
+                >
+                  Back
+                </button>
+              </form>
+
+              <h2 class="logi">Login</h2>
+              <form action="/users/login" method="post" class="login_account">
+                <label for="login_uname">Username:</label>
+                <input
+                  type="text"
+                  id="login_uname"
+                  name="username"
+                  required
+                /><br /><br />
+                <label for="login_psw">Password:</label>
+                <input
+                  type="password"
+                  id="login_psw"
+                  name="password"
+                  required
+                /><br /><br />
+                <button type="submit">Login</button>
+                <button
+                  type="button"
+                  onclick="onBack()"
+                  class="back-login"
+                  formnovalidate
+                >
+                  Back
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+        <script src="src/client.js"></script>
+      </body>
+    </html>
+  </body>
+</html>

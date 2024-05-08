@@ -1,0 +1,170 @@
+:root {
+  --vminDividedBy28: calc(100vmin / 28);
+}
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(28, 0fr);
+  grid-template-rows: repeat(28, 0fr);
+  width: calc(var(--vminDividedBy28) * 28);
+  height: calc(var(--vminDividedBy28) * 28);
+}
+.grid-item {
+  background-color: #000000;
+  width: var(--vminDividedBy28);
+  height: var(--vminDividedBy28);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+body,
+html {
+  height: 100%;
+  margin: 0;
+}
+.draw-sect {
+  display: flex;
+}
+.tutorial {
+  margin-top: 7vh;
+}
+
+.tutorial h4,
+.button-container h2 {
+  font-weight: bold;
+  color: #d6c87e;
+  font-size: 1.5vw;
+}
+.create_account label,
+.login_account label {
+  font-weight: bold;
+  color: #d6c87e;
+  font-size: 1.2vw;
+}
+.create_account input,
+.login_account input {
+  border: none;
+  background-color: rgb(255, 253, 240);
+}
+
+.mid-line-1 {
+  width: 0.5vw;
+  background-color: #6b5833;
+}
+
+.mid-line-2 {
+  width: 0.5vw;
+  background-color: #bc9e66;
+}
+.mid-line-3 {
+  width: 0.5vw;
+  background-color: #e8cfa0;
+}
+
+.big-number {
+  margin-top: 8vh;
+  font-size: 15vmin;
+  color: #d6c87e;
+}
+
+.side-bar {
+  text-align: center;
+  height: 100vh;
+  width: 50vw;
+}
+
+.guess-button,
+.login-button,
+.register-button {
+  margin-top: 10vh;
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 1.5vmax;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: #d6c87e;
+  background-color: #ffe4b2;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.create_account button,
+.login_account button {
+  margin-top: 0vh;
+  margin-left: 1vw;
+  margin-right: 1vw;
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 1.5vmax;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: #d6c87e;
+  background-color: #ffe4b2;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.register-button,
+.login-button {
+  margin: 5vh 2vw;
+}
+
+@media (min-width: 600px) and (max-width: 800px) {
+  :root {
+    --vminDividedBy28: calc(98vmax / 28);
+  }
+  .draw-sect {
+    display: block;
+  }
+  .side-bar {
+    width: 100vw;
+  }
+  .mid-line-3,
+  .mid-line-2,
+  .mid-line-1 {
+    display: none;
+  }
+}
+@media (max-width: 600px) {
+  :root {
+    --vminDividedBy28: calc(100vmin / 28);
+  }
+  .draw-sect {
+    display: block;
+  }
+  .side-bar {
+    width: 100vw;
+  }
+  .mid-line-3,
+  .mid-line-2,
+  .mid-line-1 {
+    display: none;
+  }
+}
+
+/* Hover effect for the button */
+.guess-button:hover,
+.login-button:hover,
+.register-button:hover,
+.create_account button:hover,
+.login_account button:hover {
+  background-color: rgb(238, 217, 140);
+  color: #afa362;
+}
+
+.button-container h2,
+form {
+  position: absolute;
+  display: none;
+  margin-top: -1vh;
+}
+
+p {
+  color: #d6c87e;
+  font-size: 1vw;
+}
