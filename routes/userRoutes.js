@@ -7,14 +7,17 @@ router.route("/signup").post(usersController.createNewUser); // Handle POST requ
 
 router
   .route("/login")
-  .get(validateCookie, (req, res) => {
-    res.json(req.validateData);
-  })
+  .get(validateCookie, sendValidate)
   .post(usersController.loginUser);
+
+router.route("/logout").get(usersController.logoutUser);
 
 router.get("/", usersController.getAllUsers);
 //  .get(usersController.getAllUsers)
 //  .post(usersController.createNewUser)
 //  .delete(usersController.deleteUser);
+function sendValidate(req, res) {
+  res.json(req.validateData);
+}
 
 module.exports = router;

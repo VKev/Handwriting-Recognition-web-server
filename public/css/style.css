@@ -112,6 +112,7 @@ html {
 .register-button,
 .login-button {
   margin: 5vh 2vw;
+  display: none;
 }
 
 @media (min-width: 600px) and (max-width: 800px) {
@@ -167,4 +168,13 @@ form {
 p {
   color: #d6c87e;
   font-size: 1vw;
+}
+
+.user-display {
+  display: none;
+  position: absolute;
+}
+
+.logout:hover {
+  cursor: pointer;
 }

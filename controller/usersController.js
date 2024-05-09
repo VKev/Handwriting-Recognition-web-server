@@ -106,6 +106,8 @@ const loginUser = asyncHandler(async (req, res) => {
   }
 
   req.session.authenticated = true;
+  req.session.userrole = user.roles;
+  req.session.username = user.username;
 
   res.status(200).json({
     message: "Login successful",
@@ -115,7 +117,19 @@ const loginUser = asyncHandler(async (req, res) => {
   });
 });
 
+const logoutUser = asyncHandler(async (req, res) => {
+  req.session.destroy((err) => {
+    if (err) {
+      console.error("Error destroying session:", err);
+      res.status(500).send("Error logging out");
+    } else {
+      res.send("Logout successful");
+    }
+  });
+});
+
 module.exports = {
+  logoutUser,
   loginUser,
   getAllUsers,
   createNewUser,

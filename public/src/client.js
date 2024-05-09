@@ -6,7 +6,6 @@ for (let i = 0; i < 28 * 28; i++) {
 }
 
 let isShiftPressed = false; // Flag to indicate if Shift key is pressed
-
 // Function to handle keydown event
 function handleKeyDown(event) {
   if (event.key === "Shift") {
@@ -28,7 +27,6 @@ function handleKeyUp(event) {
   }
 }
 
-// Add event listeners for keydown and keyup events
 document.addEventListener("keydown", handleKeyDown);
 document.addEventListener("keyup", handleKeyUp);
 
@@ -39,7 +37,9 @@ let isDrawing = false;
 function handleGridItemEvent(e) {
   if (isDrawing && isShiftPressed) {
     e.target.style.backgroundColor = "#000000";
-  } else if (isDrawing) e.target.style.backgroundColor = "#FFFFFF";
+  } else if (isDrawing) {
+    e.target.style.backgroundColor = "#FFFFFF";
+  }
 }
 
 // Add event listeners to grid items
@@ -115,7 +115,7 @@ function onBack() {
   displayElement(loginButton, "inline-block", "static");
   displayElement(registerButton, "inline-block", "static");
 }
-
+var userDisplay = document.querySelector(".user-display");
 fetch("/users/login")
   .then((response) => {
     if (!response.ok) {
@@ -127,15 +127,35 @@ fetch("/users/login")
   .then((data) => {
     if (data.validate === true) {
       console.log("Validation successful");
-      displayElement(loginButton, "none", "absolute");
-      displayElement(registerButton, "none", "absolute");
+      displayElement(userDisplay, "block", "static");
+      userDisplay.innerHTML = `${data.username} | <a class="logout" onclick="logout()">logout</a>
+      <div>${data.userrole}</div>`;
     } else {
       console.log("Validation failed");
+      displayElement(loginButton, "inline-block", "static");
+      displayElement(registerButton, "inline-block", "static");
     }
   })
   .catch((error) => {
     console.log("error: ", error);
   });
+
+function logout() {
+  fetch("/users/logout", {
+    method: "GET",
+    credentials: "same-origin",
+  })
+    .then((response) => {
+      if (response.ok) {
+        console.log("Logout successful");
+        console.error("Logout failed");
+      }
+    })
+    .catch((error) => {
+      console.error("Error during logout:", error);
+    });
+  window.location.reload();
+}
 
 function displayElement(element, dislay, position) {
   element.style.display = dislay;
@@ -171,10 +191,13 @@ document
           displayElement(loginButton, "none", "absolute");
           displayElement(registerButton, "none", "absolute");
           buttonContainer.innerHTML += `<h2 style="display: block; position: static">
-          Login successful!
+          Logging in...
         </h2>`;
-          console.log(data);
+          setTimeout(() => {
+            window.location.reload();
+          }, 500); // 500 milliseconds delay
         } else {
+          document.querySelector(".login-invalid").innerHTML = data.message;
         }
       });
   });
