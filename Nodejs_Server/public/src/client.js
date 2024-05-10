@@ -81,11 +81,12 @@ function generateMatrix(gridItems) {
 
 const button = document.querySelector(".guess-button");
 const buttonContainer = document.querySelector(".button-container");
-
+const bigNumber = document.querySelector(".big-number");
 button.addEventListener("click", () => {
+  button.disabled = true;
   const matrix = generateMatrix(gridItems);
   var matrixJSON = JSON.stringify(matrix);
-
+  bigNumber.innerHTML = "...";
   fetch("/guess", {
     method: "POST",
     headers: {
@@ -94,10 +95,17 @@ button.addEventListener("click", () => {
     body: matrixJSON,
   })
     .then((response) => {
-      console.log("Matrix sent successfully");
+      bigNumber.innerHTML = "...";
+      return response.json();
+    })
+    .then((data) => {
+      bigNumber.innerHTML = data.prediction;
     })
     .catch((error) => {
       console.error("Error sending matrix:", error);
+    })
+    .finally(() => {
+      button.disabled = false;
     });
 });
 var loginButton = document.querySelector(".login-button");

@@ -21,7 +21,7 @@ app.use(
     secret: "secret-key",
     resave: false,
     saveUninitialized: false,
-    cookie: { maxAge: 5 * 24 * 60 * 60 * 1000 },
+    cookie: { maxAge: 3 * 60 * 60 * 1000 },
   })
 );
 app.use(bodyParser.urlencoded({ extended: true }));

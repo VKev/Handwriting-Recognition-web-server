@@ -10,6 +10,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "archetype": "^0.13.0",
+    "axios": "^1.6.8",
     "bcrypt": "^5.1.1",
     "body-parse": "^0.1.0",
     "connect-mongodb-session": "^5.0.0",
@@ -20,6 +22,7 @@
     "express": "^4.19.2",
     "express-async-handler": "^1.2.0",
     "express-session": "^1.18.0",
+    "lodash.set": "^4.3.2",
     "mongoose": "^8.3.3",
     "mongoose-sequence": "^6.0.1",
     "react": "^18.3.1",
