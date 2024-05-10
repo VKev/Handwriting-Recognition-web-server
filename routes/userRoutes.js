@@ -11,6 +11,7 @@ router
   .post(usersController.loginUser);
 
 router.route("/logout").get(usersController.logoutUser);
+router.route("/signup").post(usersController.createNewUser);
 
 router.get("/", usersController.getAllUsers);
 //  .get(usersController.getAllUsers)

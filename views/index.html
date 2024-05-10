@@ -15,6 +15,20 @@
     <html>
       <body style="background-color: rgb(250, 243, 212)">
         <div class="draw-sect">
+          <div
+            style="
+              color: white;
+              position: absolute;
+              margin: 2vh 2vw;
+              -webkit-user-select: none;
+              -moz-user-select: none;
+              -ms-user-select: none;
+              user-select: none;
+              pointer-events: none;
+            "
+          >
+            Draw here
+          </div>
           <div class="grid-container" style="padding: 0px 0px">
             <!-- Grid items will be generated dynamically using JavaScript -->
           </div>
@@ -43,16 +57,20 @@
                 <input
                   type="text"
                   id="uname"
-                  name="uname"
+                  name="username"
                   required
                 /><br /><br />
                 <label for="psw">Password:</label>
                 <input
                   type="password"
                   id="psw"
-                  name="psw"
+                  name="password"
                   required
                 /><br /><br />
+                <p
+                  style="margin-top: -2vh; color: red"
+                  class="register-mess"
+                ></p>
                 <button type="submit">Register</button>
                 <button
                   type="button"
@@ -95,6 +113,7 @@
                 </button>
               </form>
             </div>
+            <div class="admin-function"></div>
           </div>
         </div>
         <script src="src/client.js"></script>

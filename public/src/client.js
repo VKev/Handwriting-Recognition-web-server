@@ -84,7 +84,21 @@ const buttonContainer = document.querySelector(".button-container");
 
 button.addEventListener("click", () => {
   const matrix = generateMatrix(gridItems);
-  console.log(matrix);
+  var matrixJSON = JSON.stringify(matrix);
+
+  fetch("/guess", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: matrixJSON,
+  })
+    .then((response) => {
+      console.log("Matrix sent successfully");
+    })
+    .catch((error) => {
+      console.error("Error sending matrix:", error);
+    });
 });
 var loginButton = document.querySelector(".login-button");
 var registerButton = document.querySelector(".register-button");
@@ -115,6 +129,7 @@ function onBack() {
   displayElement(loginButton, "inline-block", "static");
   displayElement(registerButton, "inline-block", "static");
 }
+var adminfunction = document.querySelector(".admin-function");
 var userDisplay = document.querySelector(".user-display");
 fetch("/users/login")
   .then((response) => {
@@ -130,6 +145,13 @@ fetch("/users/login")
       displayElement(userDisplay, "block", "static");
       userDisplay.innerHTML = `${data.username} | <a class="logout" onclick="logout()">logout</a>
       <div>${data.userrole}</div>`;
+      if (data.userrole === "Moderator" || data.userrole === "Admin") {
+      } else {
+        adminfunction.innerHTML = `Only Moderator or Admin can use more tool.<br />
+        Please contact huynhkhang7452@gmail.com if you want to change
+        your role.`;
+        displayElement(adminfunction, "block", "static");
+      }
     } else {
       console.log("Validation failed");
       displayElement(loginButton, "inline-block", "static");
@@ -187,6 +209,7 @@ document
       .then((data) => {
         if (data.message === "Login successful") {
           console.log("Login successful!");
+          clearUser();
           onBack();
           displayElement(loginButton, "none", "absolute");
           displayElement(registerButton, "none", "absolute");
@@ -201,3 +224,45 @@ document
         }
       });
   });
+var registerMess = document.querySelector(".register-mess");
+document
+  .querySelector(".create_account")
+  .addEventListener("submit", function (event) {
+    event.preventDefault();
+
+    const formData = new FormData(this);
+
+    // Convert FormData to URL-encoded string
+    const urlEncodedFormData = new URLSearchParams(formData).toString();
+
+    fetch("/users/signup", {
+      method: "POST",
+      body: urlEncodedFormData,
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+    })
+      .then((response) => {
+        if (!response.ok) {
+          console.log("Register unsuccessful");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        if (data.success) {
+          registerMess.innerHTML = `Register success!`;
+          registerMess.style.color = "green";
+          clearUser();
+        } else {
+          registerMess.innerHTML = `Username already exist!`;
+          registerMess.style.color = "red";
+        }
+      });
+  });
+
+function clearUser() {
+  document.getElementById("uname").value = "";
+  document.getElementById("psw").value = "";
+  document.getElementById("login_uname").value = "";
+  document.getElementById("login_psw").value = "";
+}

@@ -91,6 +91,10 @@ html {
   transition: background-color 0.3s ease;
 }
 
+.admin-function {
+  display: none;
+}
+
 .create_account button,
 .login_account button {
   margin-top: 0vh;
