@@ -1,10 +1,9 @@
 import os
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 import tensorflow as tf
-from tensorflow.keras import layers, models, preprocessing
+from tensorflow.keras import layers, models
 import numpy as np
 import FuncAll as fa
-import random
 
 data_dir= os.path.join( os.path.dirname(os.path.abspath(__file__)), "Dataset")
 # Load MNIST dataset

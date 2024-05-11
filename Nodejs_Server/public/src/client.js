@@ -154,12 +154,56 @@ fetch("/users/login")
       userDisplay.innerHTML = `${data.username} | <a class="logout" onclick="logout()">logout</a>
       <div>${data.userrole}</div>`;
       if (data.userrole === "Moderator" || data.userrole === "Admin") {
+        adminfunction.innerHTML = `<label id="sendlabel" for="numberInput">Enter label:</label>
+        <input type="number" style="border:none" id="numberInput" name="numberInput" max="9" min="0" required>
+        <button id="sendButton" type="submit">Send to database</button>
+        <div id="notify" style="color:red"></div>`;
       } else {
         adminfunction.innerHTML = `Only Moderator or Admin can use more tool.<br />
         Please contact huynhkhang7452@gmail.com if you want to change
         your role.`;
-        displayElement(adminfunction, "block", "static");
       }
+      displayElement(adminfunction, "block", "static");
+      var submitButton = document.getElementById("sendButton");
+      var notify = document.getElementById("notify");
+      var numberInput = document.getElementById("numberInput");
+      submitButton.addEventListener("click", function () {
+        var inputValue = numberInput.value;
+        if (inputValue >= 0 && inputValue <= 9) {
+          notify.innerHTML = "";
+          const dataToSend = {
+            label: inputValue,
+            matrix: generateMatrix(gridItems),
+          };
+          const jsonData = JSON.stringify(dataToSend);
+          submitButton.disabled = true;
+          fetch("/send", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: jsonData,
+          })
+            .then((response) => {
+              return response.json();
+            })
+            .then((data) => {
+              if (data.message === "Send data to database successful") {
+                notify.innerHTML = data.message;
+                notify.style.color = "green";
+              }
+            })
+            .catch((error) => {
+              console.error("Error sending matrix:", error);
+            })
+            .finally(() => {
+              submitButton.disabled = false;
+            });
+        } else {
+          notify.style.color = "red";
+          notify.innerHTML = `Please enter number from 0 to 9`;
+        }
+      });
     } else {
       console.log("Validation failed");
       displayElement(loginButton, "inline-block", "static");

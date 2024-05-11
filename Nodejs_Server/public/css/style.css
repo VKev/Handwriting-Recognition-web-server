@@ -17,6 +17,27 @@
   -ms-user-select: none;
   user-select: none;
 }
+.square-input {
+  width: 100px;
+  height: 100px;
+  border: 2px solid #ccc;
+  padding: 10px;
+  font-size: 16px;
+  box-sizing: border-box;
+}
+.admin-function {
+  text-align: center;
+}
+
+input[type="number"]:focus {
+  outline: none;
+  border-color: #007bff;
+}
+
+.square-input:focus {
+  outline: none;
+  border-color: #007bff;
+}
 
 body,
 html {
@@ -37,7 +58,8 @@ html {
   font-size: 1.5vw;
 }
 .create_account label,
-.login_account label {
+.login_account label,
+#sendlabel {
   font-weight: bold;
   color: #d6c87e;
   font-size: 1.2vw;
@@ -89,6 +111,13 @@ html {
   border-radius: 4px;
   cursor: pointer;
   transition: background-color 0.3s ease;
+}
+
+#sendButton {
+  color: #d6c87e;
+  background-color: #ffe4b2;
+  border: none;
+  border-radius: 4px;
 }
 
 .admin-function {
@@ -157,7 +186,8 @@ html {
 .login-button:hover,
 .register-button:hover,
 .create_account button:hover,
-.login_account button:hover {
+.login_account button:hover,
+#sendButton:hover {
   background-color: rgb(238, 217, 140);
   color: #afa362;
 }

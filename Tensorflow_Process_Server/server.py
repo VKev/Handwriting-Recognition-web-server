@@ -1,7 +1,7 @@
 import os
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
-from flask import Flask, request, jsonify
-import tensorflow as tf
+from flask import Flask, request, jsonify, render_template
+import tensorflow.keras as keras
 import numpy as np
 
 app = Flask(__name__)
@@ -9,7 +9,7 @@ app = Flask(__name__)
 # Load the trained model
 save_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "SaveModel")
 save_dir = os.path.join(save_dir, 'saved_model.keras')
-model = tf.keras.models.load_model(save_dir)
+model = keras.models.load_model(save_dir)
 
 @app.route('/predict', methods=['POST'])
 def predict():
@@ -30,6 +30,10 @@ def predict():
 
     # Return the prediction result
     return jsonify({'prediction': int(predicted_class)})
+
+@app.route('/', methods=['GET'])
+def home(): 
+    return render_template('index.html')
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=int(os.environ.get('PORT', 5000)))
