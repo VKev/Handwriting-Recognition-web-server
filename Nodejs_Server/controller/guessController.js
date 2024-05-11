@@ -5,7 +5,7 @@ const guess = asyncHandler(async (req, res) => {
   try {
     const matrix = req.body;
     const response = await axios.post(
-      "https://flask-handwriting-process-7dc3af01bcd7.herokuapp.com/predict",
+      "https://flask-handwriting-server.onrender.com/predict",
       {
         matrix,
       }
