@@ -4,12 +4,9 @@ const axios = require("axios");
 const guess = asyncHandler(async (req, res) => {
   try {
     const matrix = req.body;
-    const response = await axios.post(
-      "https://flask-handwriting-server.onrender.com/predict",
-      {
-        matrix,
-      }
-    );
+    const response = await axios.post("http://127.0.0.1:3333/predict", {
+      matrix,
+    });
     const prediction = response.data.prediction;
     res.json({ prediction });
   } catch (error) {

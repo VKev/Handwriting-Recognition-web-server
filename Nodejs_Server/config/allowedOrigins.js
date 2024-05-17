@@ -1,7 +1,7 @@
 const allowedOrigins = [
   "http://localhost:2000",
-  "http://www.nodejs-handwriting-server.onrender.com",
-  "https://nodejs-handwriting-server.onrender.com",
+  "http://www.hrwebserver.onrender.com",
+  "https://hrwebserver.onrender.com",
 ];
 
 module.exports = allowedOrigins;
