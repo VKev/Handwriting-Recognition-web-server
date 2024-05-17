@@ -9,6 +9,7 @@ vkev25811/hrwebserver
 Use this image URL for hosting, set environment variables like the following:
 
 DATABASE_URI = your mongodb uri
+
 URL = your page url after hosting so it allowed by cors
 
 #### How it work?
