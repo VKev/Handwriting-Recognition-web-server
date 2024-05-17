@@ -1,7 +1,3 @@
-const allowedOrigins = [
-  "http://localhost:2000",
-  "http://www.hrwebserver.onrender.com",
-  "https://hrwebserver.onrender.com",
-];
+const allowedOrigins = [process.env.URL];
 
 module.exports = allowedOrigins;
