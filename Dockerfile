@@ -13,7 +13,7 @@ RUN apt-get install -y build-essential
 WORKDIR /app/flask_process_server
 
 # Copy Flask server files
-COPY Flask_Process_Server/ .
+COPY Flask_Server/ .
 
 # Install Python dependencies
 RUN pip install -r requirements.txt
